@@ -1,5 +1,7 @@
 'use client'
 
+import Link from "next/link";
+
 const Footer = () => {
   return (
     <footer className="py-6 mt-10 text-white bg-red-600">
@@ -17,10 +19,10 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold">Site Map</h3>
             <ul className="mt-2 space-y-2">
-              <li><a href="/" className="hover:underline">Home</a></li>
-              <li><a href="/about" className="hover:underline">About Us</a></li>
-              <li><a href="/donate" className="hover:underline">Donate Blood</a></li>
-              <li><a href="/contact" className="hover:underline">Contact</a></li>
+              <li><Link href="/" className="hover:underline">Home</Link></li>
+              <li><Link href="/about" className="hover:underline">About Us</Link></li>
+              <li><Link href="/donate" className="hover:underline">Donate Blood</Link></li>
+              <li><Link href="/donors" className="hover:underline">Find Donors</Link></li>
             </ul>
           </div>
 
