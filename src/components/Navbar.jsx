@@ -1,7 +1,8 @@
-"use client";
-import { useRouter } from "next/navigation";
-import { ArrowRight, HeartPulse, Menu, School } from "lucide-react";
-import { Button } from "@/components/ui/button";
+
+'use client'
+import { useRouter } from 'next/navigation';
+import { ArrowRight, HeartPulse, Menu } from "lucide-react";
+import { Button } from "@/components/ui/button"
 import {
   Sheet,
   SheetClose,
@@ -10,7 +11,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
+} from "@/components/ui/sheet"
 import {
   SignedIn,
   SignedOut,
@@ -31,34 +32,16 @@ const Navbar = () => {
           </div>
           <div>
             <ul className="flex text-white list-none flex-row items-center justify-center font-medium">
-              <li
-                className="mr-4 cursor-pointer"
-                onClick={() => router.push("/")}
-              >
+              <li className="mr-4 cursor-pointer" onClick={() => router.push("/")}>
                 Home
               </li>
-              <li
-                className="mr-4 cursor-pointer"
-                onClick={() => router.push("/donors")}
-              >
-                Donors
-              </li>
-              <li
-                className="mr-4 cursor-pointer"
-                onClick={() => router.push("/about")}
-              >
+              <li className="mr-4 cursor-pointer" onClick={() => router.push("/about")}>
                 About
               </li>
-              <li
-                className="mr-4 cursor-pointer"
-                onClick={() => router.push("/feedback")}
-              >
-                Feedback
+              <li className="mr-4 cursor-pointer" onClick={() => router.push("/donors")}>
+                Donors
               </li>
-              <li
-                className="mr-4 cursor-pointer"
-                onClick={() => router.push("/emergency")}
-              >
+              <li className="mr-4 cursor-pointer" onClick={() => router.push("/emergency")}>
                 Emergency
               </li>
               <li className="mr-4">
@@ -84,8 +67,74 @@ const Navbar = () => {
           </div>
         </nav>
       </div>
+      <div className="flex items-center justify-between h-full px-4 md:hidden">
+        <HeartPulse size={30} className="text-red-700" />
+        <h1 className="text-red-700 text-2xl font-semibold">Blood Link</h1>
+        <MobileNavbar />
+      </div>
     </div>
   );
 };
 
 export default Navbar;
+
+
+const MobileNavbar = () => {
+  const router = useRouter();
+  return (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button className="text-black bg-gray-100 rounded-full hover:bg-gray-200">
+          <Menu />
+        </Button>
+      </SheetTrigger>
+      <SheetContent className="flex bg-red-700 flex-col" >
+        <SheetHeader className="flex flex-col items-center justify-between mt-2">
+          <SheetTitle>
+            <div className="flex items-center justify-between h-full px-4 md:hidden">
+              <HeartPulse size={30} className="text-white" />
+              <h1 className="text-white font-semibold">Blood Link</h1>
+            </div>
+          </SheetTitle>
+        </SheetHeader>
+        <nav className="text-white flex w-full justify-between items-center p-4">
+          <div>
+            <ul className="flex text-white list-none  flex-col items-center justify-center font-medium">
+              <li className="mr-4 cursor-pointer" onClick={() => router.push("/")}>
+                Home
+              </li>
+              <li className="mr-4 cursor-pointer" onClick={() => router.push("/about")}>
+                About
+              </li>
+              <li className="mr-4 cursor-pointer" onClick={() => router.push("/donors")}>
+                Donors
+              </li>
+              <li className="mr-4 cursor-pointer" onClick={() => router.push("/emergency")}>
+                Emergency
+              </li>
+              <li className="mr-4">
+                <Button
+                  variant="outline"
+                  className="text-white bg-red-700"
+                  onClick={() => router.push("/donate")}
+                >
+                  Donate Now <ArrowRight />
+                </Button>
+              </li>
+              <li>
+                <SignedOut>
+                  <SignInButton>
+                    <Button className="bg-white text-red-700">Login</Button>
+                  </SignInButton>
+                </SignedOut>
+                <SignedIn>
+                  <UserButton />
+                </SignedIn>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </SheetContent>
+    </Sheet>
+  );
+};

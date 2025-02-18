@@ -32,112 +32,49 @@ const Section2 = () => {
   );
 
   return (
-    <div>
+    <div className="container mx-auto p-6">
       {/* Search Bar */}
-      <div className="container p-6 mx-auto">
-        <h2 className="m-4 text-4xl font-bold text-center text-red-700">
-          Find Blood Donors
-        </h2>
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-6">
-          <Link href={"/donors"}>
-            <Input
-              className="text-red-700 bg-red-100 w-full sm:w-[500px] md:w-[700px] lg:w-[900px]"
-              value={searchData}
-              onChange={(e) => setSearchData(e.target.value)}
-              placeholder="Search by blood group or city (e.g., A+, B-, O+, Mumbai)..."
-            />
-          </Link>
-        </div>
+      <h2 className="m-4 text-3xl md:text-4xl font-bold text-center text-red-700">
+        Find Blood Donors
+      </h2>
+      <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-6">
+        <Link href={"/donors"}>
+          <Input
+            className="text-red-700 bg-red-100 w-full sm:w-[500px] md:w-[700px] lg:w-[900px]"
+            value={searchData}
+            onChange={(e) => setSearchData(e.target.value)}
+            placeholder="Search by blood group or city (e.g., A+, B-, O+, Mumbai)..."
+          />
+        </Link>
+      </div>
 
-        {/* Donor Cards (Real-time updates) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {filteredDonors.length > 0 ? (
-            filteredDonors.map((donor) => (
-              <Card
-                key={donor.id}
-                className="rounded-lg shadow-lg border-none bg-red-700 text-white p-4"
-              >
-                <CardHeader className="flex flex-col">
-                  <CardTitle className="text-xl">{donor.cityname}</CardTitle>
-                  <CardDescription>
-                    <p><strong>Blood Group:</strong> {donor.bloodGroup}</p>
-                    <p><strong>Units Available:</strong> {donor.donorsAvailable}</p>
-                  </CardDescription>
-                  <Button
-                    variant="secondary"
-                    className="bg-white text-red-700 hover:bg-red-700 hover:text-white rounded-lg mt-2"
-                  >
-                    Contact Now
-                  </Button>
-                </CardHeader>
-              </Card>
-            ))
-          ) : (
-            <>
-              {/* Dummy Cards */}
-              <Card className="rounded-lg shadow-lg border-none bg-red-700 text-white p-4">
-                <CardHeader className="flex flex-col">
-                  <CardTitle className="text-xl">Mumbai</CardTitle>
-                  <CardDescription>
-                    <p><strong>Blood Group:</strong> O+</p>
-                    <p><strong>Units Available:</strong> 10</p>
-                  </CardDescription>
-                  <Button
-                    variant="secondary"
-                    className="bg-white text-red-700 hover:bg-red-700 hover:text-white rounded-lg mt-2"
-                  >
-                    Contact Now
-                  </Button>
-                </CardHeader>
-              </Card>
-              <Card className="rounded-lg shadow-lg border-none bg-red-700 text-white p-4">
-                <CardHeader className="flex flex-col">
-                  <CardTitle className="text-xl">Delhi</CardTitle>
-                  <CardDescription>
-                    <p><strong>Blood Group:</strong> A-</p>
-                    <p><strong>Units Available:</strong> 5</p>
-                  </CardDescription>
-                  <Button
-                    variant="secondary"
-                    className="bg-white text-red-700 hover:bg-red-700 hover:text-white rounded-lg mt-2"
-                  >
-                    Contact Now
-                  </Button>
-                </CardHeader>
-              </Card>
-              <Card className="rounded-lg shadow-lg border-none bg-red-700 text-white p-4">
-                <CardHeader className="flex flex-col">
-                  <CardTitle className="text-xl">Chennai</CardTitle>
-                  <CardDescription>
-                    <p><strong>Blood Group:</strong> B+</p>
-                    <p><strong>Units Available:</strong> 8</p>
-                  </CardDescription>
-                  <Button
-                    variant="secondary"
-                    className="bg-white text-red-700 hover:bg-red-700 hover:text-white rounded-lg mt-2"
-                  >
-                    Contact Now
-                  </Button>
-                </CardHeader>
-              </Card>
-              <Card className="rounded-lg shadow-lg border-none bg-red-700 text-white p-4">
-                <CardHeader className="flex flex-col">
-                  <CardTitle className="text-xl">Bangalore</CardTitle>
-                  <CardDescription>
-                    <p><strong>Blood Group:</strong> AB-</p>
-                    <p><strong>Units Available:</strong> 7</p>
-                  </CardDescription>
-                  <Button
-                    variant="secondary"
-                    className="bg-white text-red-700 hover:bg-red-700 hover:text-white rounded-lg mt-2"
-                  >
-                    Contact Now
-                  </Button>
-                </CardHeader>
-              </Card>
-            </>
-          )}
-        </div>
+      {/* Donor Cards (Real-time updates) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {filteredDonors.length > 0 ? (
+          filteredDonors.map((donor) => (
+            <Card
+              key={donor.id}
+              className="rounded-lg shadow-lg border-none bg-red-700 text-white p-4"
+            >
+              <CardHeader className="flex flex-col">
+                <CardTitle className="text-lg md:text-xl">{donor.cityname}</CardTitle>
+                <CardDescription className="text-sm md:text-base">
+                  <p><strong>Blood Group:</strong> {donor.bloodGroup}</p>
+                  <p><strong>Units Available:</strong> {donor.donorsAvailable}</p>
+                </CardDescription>
+<Link href={"/donors"} >
+<Button
+                  variant="secondary"
+                  className="bg-white text-red-700 hover:bg-red-700 hover:text-white rounded-lg mt-2"
+                >
+                  Contact Now
+                </Button></Link>
+              </CardHeader>
+            </Card>
+          ))
+        ) : (
+          <p className="text-center text-gray-500 text-lg col-span-full">No donors found.</p>
+        )}
       </div>
     </div>
   );
